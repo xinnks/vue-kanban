@@ -1,6 +1,6 @@
 # Vue Kanban
 
-Vue 3 Kanban example
+A kanban board made in Vue 3
 
 ## Recommended IDE Setup
 
