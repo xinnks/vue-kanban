@@ -1,10 +1,15 @@
 <script setup>
-import Board from './components/Board.vue'
+import Board from './components/KanbanBoard.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <Board msg="Vue Kanban" />
+  <img
+    alt="Vue logo"
+    src="./assets/logo.png"
+  >
+  <Board
+    msg="Vue Kanban"
+  />
 </template>
 
 <style>

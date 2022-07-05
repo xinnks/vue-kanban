@@ -1,7 +1,7 @@
 <script setup>
-import { useStore } from 'vuex';
-import Task from './Task.vue';
-import TaskInput from './TaskInput.vue';
+import { useStore } from 'vuex'
+import Task from './TaskCard.vue'
+import TaskInput from './TaskInput.vue'
 const store = useStore()
 
 const props = defineProps({
@@ -11,11 +11,12 @@ const props = defineProps({
   },
   type: {
     type: String,
+    default: "todo",
     validator: (val) => ["todo", "done", "in-progress"].indexOf(val) !== -1
   },
   tasks: {
     type: Array,
-    default: []
+    default: () => []
   }
 })
 
@@ -31,11 +32,24 @@ const drop = (el) => {
 </script>
 
 <template>
-  <div class="column" :class="type">
+  <div
+    class="column"
+    :class="type"
+  >
     <h2>{{ title }}</h2>
 
-    <div class="body" @dragover.prevent="dragOver" @drop.pre@dragover.prevent="drop">
-      <Task v-for="task of tasks" :index="task.id" :title="task.title" :type="task.type"></Task>
+    <div
+      class="body"
+      @dragover.prevent="dragOver"
+      @drop.prevent="drop"
+    >
+      <Task
+        v-for="(task, index) of tasks"
+        :key="index"
+        :index="task.id"
+        :title="task.title"
+        :type="task.type"
+      />
       
       <TaskInput :type="props.type" />
     </div>

@@ -6,10 +6,12 @@ defineProps({
   },
   type: {
     type: String,
+    required: true,
     validator: (val) => ["todo", "done", "in-progress"].indexOf(val) !== -1
   },
   index: {
     type: String,
+    required: true,
     validator: (val) => !!val
   }
 })
@@ -27,8 +29,15 @@ const dragStart = (el) => {
 </script>
 
 <template>
-  <div class="task" @dragstart="dragStart" draggable="true" :id="`${index}*#*${type}`">
-    <span class="emoji">{{emojis[type]}}</span> {{ title }}
+  <div
+    :id="`${index}*#*${type}`"
+    class="task"
+    draggable
+    @dragstart="dragStart"
+  >
+    <span class="emoji">
+      {{ emojis[type] }}
+    </span> {{ title }}
   </div>
 </template>
 

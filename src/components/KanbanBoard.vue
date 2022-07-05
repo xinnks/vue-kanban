@@ -1,13 +1,17 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Column from "./Column.vue"
-
-const store = useStore()
+import Column from "./SectionColumn.vue"
 
 defineProps({
-  msg: String
+  msg: {
+    type: String,
+    default: "Kanban Board"
+  },
+  
 })
+
+const store = useStore()
 
 const todoList = computed(() => store.getters.allTasksByType("todo"))
 const inProgressList = computed(() => store.getters.allTasksByType("in-progress"))
@@ -18,9 +22,21 @@ const doneList = computed(() => store.getters.allTasksByType("done"))
   <h1>{{ msg }}</h1>
 
   <div class="board">
-    <Column type="todo" title="Todo" :tasks="todoList"/>
-    <Column type="in-progress" title="In Progress" :tasks="inProgressList"/>
-    <Column type="done" title="Done" :tasks="doneList"/>
+    <Column
+      type="todo"
+      title="Todo"
+      :tasks="todoList"
+    />
+    <Column
+      type="in-progress"
+      title="In Progress"
+      :tasks="inProgressList"
+    />
+    <Column
+      type="done"
+      title="Done"
+      :tasks="doneList"
+    />
   </div>
 </template>
 

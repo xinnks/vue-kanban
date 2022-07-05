@@ -6,6 +6,7 @@ const store = useStore()
 const props = defineProps({
   type: {
     type: String,
+    default: "New Task",
     validator: (val) => ["todo", "done", "in-progress"].indexOf(val) !== -1
   }
 })
@@ -29,10 +30,23 @@ const addTask = () => {
 </script>
 
 <template>
-  <a href="#" type="link" @click.prevent="showInput = true" v-if="!showInput">New Task</a>
-  <div class="task-input" v-else>
+  <a
+    v-if="!showInput"
+    href="#"
+    type="link"
+    @click.prevent="showInput = true"
+  >New Task</a>
+  <div
+    v-else
+    class="task-input"
+  >
     <span>
-      <input type="text" v-model="newTask.title" @keydown.enter="addTask" @keydown.escape="showInput = false">
+      <input
+        v-model="newTask.title"
+        type="text"
+        @keydown.enter="addTask"
+        @keydown.escape="showInput = false"
+      >
     </span>
   </div>
 </template>
